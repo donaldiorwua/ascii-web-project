@@ -2,14 +2,18 @@ package main
 
 import (
 	asciiwebproject "ascii-web-project/functions"
-	"log"
+	"html/template"
 	"net/http"
 )
 
+var temp *template.Template
+
 func main() {
-	http.HandleFunc("/", asciiwebproject.HelloApp)
-	err := http.ListenAndServe(":9090", nil)
-	if err != nil {
-		log.Fatal("Not found", err)
-	}
+	// http.HandleFunc("/hello", asciiwebproject.HelloApp)
+	// http.HandleFunc("/about", asciiwebproject.About)
+	
+	http.HandleFunc("/", asciiwebproject.IndexPage)
+
+	http.ListenAndServe(":8080", nil)
+
 }
