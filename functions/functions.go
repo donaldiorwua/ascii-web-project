@@ -6,13 +6,12 @@ import (
 	"net/http"
 )
 
-var temp *template.Template
+var Temp *template.Template
+var err error
 
 // function to render Hello World
 func HelloApp(web http.ResponseWriter, request *http.Request) {
-	request.ParseForm()
-	fmt.Println("server running...")
-
+	
 	fmt.Fprintf(web, "Hello Word")
 }
 
@@ -24,10 +23,9 @@ func About(web http.ResponseWriter, request *http.Request) {
 
 // function to handle index page
 func IndexPage(web http.ResponseWriter, request *http.Request) {
-	temp, err := template.ParseFiles("templates/home.html")
+	err = Temp.ExecuteTemplate(web, "home.html", nil)
 	if err != nil {
 		http.Error(web, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	temp.Execute(web, nil)
 }

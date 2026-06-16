@@ -6,12 +6,15 @@ import (
 	"net/http"
 )
 
-var temp *template.Template
+//var err error
 
 func main() {
-	// http.HandleFunc("/hello", asciiwebproject.HelloApp)
-	// http.HandleFunc("/about", asciiwebproject.About)
-	
+	asciiwebproject.Temp = template.Must(template.ParseGlob("templates/*.html"))
+	// if err != nil {
+	// 	log.Fatal(err)
+	// 	return
+	// }
+
 	http.HandleFunc("/", asciiwebproject.IndexPage)
 
 	http.ListenAndServe(":8080", nil)
