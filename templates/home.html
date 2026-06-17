@@ -3,32 +3,28 @@
     <title>Home</title>
 </head>
 <body bgcolor="skyblue">
-    <div align="center">
-    <h1>Welcome to ASCII Web Application</h1>
-    <table align="center">
+    <table align="center" bgcolor="">
+        <tr><h1 align="center"> Welcome to ASCII Web Application</h1></tr>
         <tr>
             <td>
-                <div>
-                    <h1 align="left">Select Banner</h1><br>
+                    <h3 align="left">Select Banner</h3><br>
                     <label for="">Standard</label>
                     <input type="radio"><br>
                     <label for="">Thinkertoy</label>
                     <input type="radio"><br>
                     <label for="">Shadow</label>
                     <input type="radio">
-                </div>
             </td>
             <td>
-                <div>
-                    <h1 align="right">Enter Text To Render ASCII-Art</h1><br>
-                    <label for="">Enter Text</label>
-                    <input type="text" name="inputText"><br>
+                    <h3 align="right">Enter Text To Render ASCII-Art</h3><br>
+                    <form action="render" method="GET">
+                    <label for="input">Enter Text</label>
+                    <input type="text" name="inputText" id="input"><br>
                     <br>
-                    <input type="button" name="render" value="submit">
-                </div>
+                    <input type="submit" name="render" value="submit">
+                    </form>
             </td>
         </tr>
     </table>
-    </div>
 </body>
 </html>

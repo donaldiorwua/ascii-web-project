@@ -9,17 +9,7 @@ import (
 var Temp *template.Template
 var err error
 
-// function to render Hello World
-func HelloApp(web http.ResponseWriter, request *http.Request) {
-	
-	fmt.Fprintf(web, "Hello Word")
-}
 
-// function to render Hello World
-func About(web http.ResponseWriter, request *http.Request) {
-
-	fmt.Fprintf(web, "This is ASCII Art Web Golang Poject!\nIts an improvement form the ASCII Art Project")
-}
 
 // function to handle index page
 func IndexPage(web http.ResponseWriter, request *http.Request) {
@@ -28,4 +18,19 @@ func IndexPage(web http.ResponseWriter, request *http.Request) {
 		http.Error(web, err.Error(), http.StatusInternalServerError)
 		return
 	}
+}
+
+func Render(web http.ResponseWriter, request *http.Request) {
+	if request.Method != "GET" {
+		http.Redirect(web, request, "/", http.StatusSeeOther)
+		return
+	}
+	ascii := request.FormValue("inputText")
+
+	d := struct {
+		Renderer string
+	}{
+		Renderer: ascii,
+	}
+	Temp.ExecuteTemplate(web, "render.html", d)
 }

@@ -16,6 +16,7 @@ func main() {
 	// }
 
 	http.HandleFunc("/", asciiwebproject.IndexPage)
+	http.HandleFunc("/render", asciiwebproject.Render)
 
 	http.ListenAndServe(":8080", nil)
 
