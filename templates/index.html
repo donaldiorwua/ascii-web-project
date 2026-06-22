@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-    <title>Home</title>
+    <title>Home | ASCII Web Application</title>
 </head>
 </style>
 
@@ -10,26 +10,24 @@
     <div style="width: 80%; padding-left: 10%;">
         <div style="width: 46%; float: left; background-color: rgb(110, 145, 115); padding: 2%;">
             <h3 align="center">Select Banner</h3><br>
-            <form action="/functions/functions.go">
+            <form action="index" method="POST" target="_self">
                 <div style="padding-left: 25%;">
                     <input type="radio" id="standard" name="banner_file" value="standard">
                     <label for="standard">Standard</label><br>
-                    <input type="radio" id="thinkertoy" name="banner_file" value="standard">
+                    <input type="radio" id="thinkertoy" name="banner_file" value="thinkertoy">
                     <label for="thinkertoy">Thinkertoy</label><br>
-                    <input type="radio" id="shadow" name="banner_file" value="standard">
+                    <input type="radio" id="shadow" name="banner_file" value="shadow">
                     <label for="shadow">Shadow</label>
                 </div>
-            </form>
         </div>
-        <div style="width: 46%; background-color: darkseagreen; padding: 2%; float: right;">
+        <div style="width: 46%; background-color: rgb(143, 185, 188); padding: 2%; float: right;">
             <h3 align="center">Enter Text To Render ASCII-Art</h3><br>
-            <form action="render.html" method="POST" target="_self">
-                <label for="inputtext">Enter Text:</label>
-                <input type="text" name="inputText" id="inputtext"><br>
-                <br>
-                <div style="padding-left: 20%;">
-                    <input type="submit" value="submit" onclick="alert(Submitted)"><br>
-                </div>
+            <label for="inputtext">Enter Text:</label>
+            <input type="text" name="inputText" id="inputtext"><br>
+            <br>
+            <div style="padding-left: 20%;">
+                <input type="submit" value="submit" onclick="alert(Submitted)"><br>
+            </div>
             </form>
         </div>
         <div style="width: 100%;">
@@ -38,7 +36,10 @@
                     <legend>
                         <h1> ASCII-ART</h1>
                     </legend>
-                    <textarea name="message" id="message" rows="10" cols="120">message</textarea>
+                    <textarea name="message" id="message" rows="10" cols="120">{{if .Result}}{{.Result}}{{end}}</textarea>
+                    {{if .Error }}
+                    <p style="color: darkred;">{{ .Error }}</p>
+                    {{end}}
                 </fieldset>
             </form>
         </div>
