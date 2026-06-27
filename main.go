@@ -2,6 +2,7 @@ package main
 
 import (
 	asciiwebproject "ascii-web-project/handlers"
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -15,6 +16,7 @@ func main() {
 		log.Fatal(err)
 		return
 	}
+	fmt.Println("server running at http://localhost:8080/")
 
 	http.HandleFunc("/", asciiwebproject.IndexPage)
 

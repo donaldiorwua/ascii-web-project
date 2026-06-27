@@ -10,13 +10,16 @@
     <div style="width: 80%; padding-left: 10%;">
         <div style="width: 46%; float: left; background-color: rgb(110, 145, 115); padding: 2%;">
             <h3 align="center">Select Banner</h3><br>
-            <form action="index" method="POST" target="_self">
+            <form action="/" method="POST" target="_self">
                 <div style="padding-left: 25%;">
-                    <input type="radio" id="standard" name="banner_file" value="standard">
+                    <input type="radio" id="standard" name="banner_file" value="standard"
+                    {{if .Banner "standard" }} checked {{end}}>
                     <label for="standard">Standard</label><br>
-                    <input type="radio" id="thinkertoy" name="banner_file" value="thinkertoy">
+                    <input type="radio" id="thinkertoy" name="banner_file" value="thinkertoy"
+                   {{if eq .Banner "thinkertoy" }} checked {{end}} >
                     <label for="thinkertoy">Thinkertoy</label><br>
-                    <input type="radio" id="shadow" name="banner_file" value="shadow">
+                    <input type="radio" id="shadow" name="banner_file" value="shadow"
+                    {{if .Banner "shadow" }} >
                     <label for="shadow">Shadow</label>
                 </div>
         </div>
