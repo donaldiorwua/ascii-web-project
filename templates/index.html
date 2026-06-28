@@ -13,13 +13,13 @@
             <form action="/" method="POST" target="_self">
                 <div style="padding-left: 25%;">
                     <input type="radio" id="standard" name="banner_file" value="standard"
-                    {{if .Banner "standard" }} checked {{end}}>
+                    {{if eq .Banner "standard" }} checked {{end}} checked>
                     <label for="standard">Standard</label><br>
                     <input type="radio" id="thinkertoy" name="banner_file" value="thinkertoy"
                    {{if eq .Banner "thinkertoy" }} checked {{end}} >
                     <label for="thinkertoy">Thinkertoy</label><br>
                     <input type="radio" id="shadow" name="banner_file" value="shadow"
-                    {{if .Banner "shadow" }} >
+                    {{if eq .Banner "shadow" }} checked {{end}} >
                     <label for="shadow">Shadow</label>
                 </div>
         </div>
@@ -27,6 +27,9 @@
             <h3 align="center">Enter Text To Render ASCII-Art</h3><br>
             <label for="inputtext">Enter Text:</label>
             <input type="text" name="inputText" id="inputtext"><br>
+            {{if .Error }}
+                    <span style="color: darkred;">{{ .Error }}</span>
+                    {{end}}
             <br>
             <div style="padding-left: 20%;">
                 <input type="submit" value="submit" onclick="alert(Submitted)"><br>
@@ -40,9 +43,6 @@
                         <h1> ASCII-ART</h1>
                     </legend>
                     <textarea name="message" id="message" rows="10" cols="120">{{if .Result}}{{.Result}}{{end}}</textarea>
-                    {{if .Error }}
-                    <p style="color: darkred;">{{ .Error }}</p>
-                    {{end}}
                 </fieldset>
             </form>
         </div>

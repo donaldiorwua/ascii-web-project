@@ -39,7 +39,6 @@ func IndexPage(web http.ResponseWriter, request *http.Request) {
 			InputText: inputText,
 			Banner:    banner_file,
 			Result:    "asciarts",
-			Error:     "error",
 		}
 
 		filedata, err := LoadBanner(data.Banner)
@@ -64,3 +63,7 @@ func IndexPage(web http.ResponseWriter, request *http.Request) {
 
 	}
 }
+
+// {func ReLoad(w http.ResponseWriter, r *http.Request)  {
+// 	banner := r.URL.Path
+// }}
