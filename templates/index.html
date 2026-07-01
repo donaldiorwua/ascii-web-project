@@ -12,14 +12,11 @@
             <h3 align="center">Select Banner</h3><br>
             <form action="/" method="POST" target="_self">
                 <div style="padding-left: 25%;">
-                    <input type="radio" id="standard" name="banner_file" value="standard"
-                    {{if eq .Banner "standard" }} checked {{end}} checked>
+                    <input type="radio" id="standard" name="banner_file" value="standard" checked>
                     <label for="standard">Standard</label><br>
-                    <input type="radio" id="thinkertoy" name="banner_file" value="thinkertoy"
-                   {{if eq .Banner "thinkertoy" }} checked {{end}} >
+                    <input type="radio" id="thinkertoy" name="banner_file" value="thinkertoy">
                     <label for="thinkertoy">Thinkertoy</label><br>
-                    <input type="radio" id="shadow" name="banner_file" value="shadow"
-                    {{if eq .Banner "shadow" }} checked {{end}} >
+                    <input type="radio" id="shadow" name="banner_file" value="shadow">
                     <label for="shadow">Shadow</label>
                 </div>
         </div>
@@ -28,13 +25,23 @@
             <label for="inputtext">Enter Text:</label>
             <input type="text" name="inputText" id="inputtext"><br>
             {{if .Error }}
-                    <span style="color: darkred;">{{ .Error }}</span>
-                    {{end}}
+            <span style="color: darkred;">{{ .Error }}</span>
+            {{end}}
             <br>
             <div style="padding-left: 20%;">
-                <input type="submit" value="submit" onclick="alert(Submitted)"><br>
+                <input type="submit" value="Generate"><br>
             </div>
             </form>
+        </div>
+        <br><br>
+        <div style="width: auto;"><br><br>
+            <span>Select any of the Banners to change the ascii style</span><br><br>
+        <form action="/reload" method="GET">
+            <input type="hidden" name="inputText" value="{{.InputText}}">
+            <button type="submit" name="banner_file" value="standard">Standard</button>
+            <button type="submit" name="banner_file" value="shadow">Shadow</button>
+            <button type="submit" name="banner_file" value="thinkertoy">Thinkertoy</button>
+        </form>
         </div>
         <div style="width: 100%;">
             <form>
@@ -42,7 +49,8 @@
                     <legend>
                         <h1> ASCII-ART</h1>
                     </legend>
-                    <textarea name="message" id="message" rows="10" cols="120">{{if .Result}}{{.Result}}{{end}}</textarea>
+                    <textarea name="message" id="message" rows="10"
+                        cols="120">{{if .Result}}{{.Result}}{{end}}</textarea>
                 </fieldset>
             </form>
         </div>

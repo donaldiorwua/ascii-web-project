@@ -64,6 +64,43 @@ func IndexPage(web http.ResponseWriter, request *http.Request) {
 	}
 }
 
-// {func ReLoad(w http.ResponseWriter, r *http.Request)  {
-// 	banner := r.URL.Path
-// }}
+func ReLoad(w http.ResponseWriter, r *http.Request) {
+	err = r.ParseForm()
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "internal server error", http.StatusInternalServerError)
+		return
+	}
+
+	inputText := r.URL.Query().Get("inputText")
+	banner_file := r.URL.Query().Get("banner_file")
+
+	data := struct {
+		InputText string
+		Banner    string
+		Result    string
+		Error     string
+	}{
+		InputText: inputText,
+		Banner:    banner_file,
+		Result:    "asciarts",
+	}
+
+	filedata, err := LoadBanner(data.Banner)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "internal server error", http.StatusInternalServerError)
+		return
+	}
+	data.Result, err = RenderArt(data.InputText, filedata)
+	if err != nil {
+		data.Error = err.Error()
+	}
+
+	err = Temp.Execute(w, data)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "internal server error", http.StatusInternalServerError)
+		return
+	}
+}

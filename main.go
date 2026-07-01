@@ -19,6 +19,7 @@ func main() {
 	fmt.Println("server running at http://localhost:8080/")
 
 	http.HandleFunc("/", asciiwebproject.IndexPage)
+	http.HandleFunc("/reload", asciiwebproject.ReLoad)
 
 	http.ListenAndServe(":8080", nil)
 
