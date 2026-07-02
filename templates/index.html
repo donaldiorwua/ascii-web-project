@@ -8,6 +8,26 @@
 <body style="background-color: lavender;" algn="center">
     <h1 align="center"> Welcome to ASCII Web Application</h1>
     <div style="width: 80%; padding-left: 10%;">
+        {{if .Result}}
+        <div style="width: auto;"><br><br>
+            <span>Select any of the Banners to change the ascii style</span><br><br>
+            <form action="/reload" method="GET">
+                <input type="hidden" name="inputText" value="{{.InputText}}">
+                <button type="submit" name="banner_file" value="standard">Standard</button>
+                <button type="submit" name="banner_file" value="shadow">Shadow</button>
+                <button type="submit" name="banner_file" value="thinkertoy">Thinkertoy</button>
+        </div>
+        <div style="width: 100%;">
+            <fieldset>
+                <legend>
+                    <h1> ASCII-ART</h1>
+                </legend>
+                <textarea name="message" id="message" rows="10" cols="120" style="background-color: darkgrey;">{{if .Result}}{{.Result}}{{end}}</textarea>
+            </fieldset>
+            </form>
+        </div>
+        {{else}}
+        <br><br>
         <div style="width: 46%; float: left; background-color: rgb(110, 145, 115); padding: 2%;">
             <h3 align="center">Select Banner</h3><br>
             <form action="/" method="POST" target="_self">
@@ -33,27 +53,7 @@
             </div>
             </form>
         </div>
-        <br><br>
-        <div style="width: auto;"><br><br>
-            <span>Select any of the Banners to change the ascii style</span><br><br>
-        <form action="/reload" method="GET">
-            <input type="hidden" name="inputText" value="{{.InputText}}">
-            <button type="submit" name="banner_file" value="standard">Standard</button>
-            <button type="submit" name="banner_file" value="shadow">Shadow</button>
-            <button type="submit" name="banner_file" value="thinkertoy">Thinkertoy</button>
-        </form>
-        </div>
-        <div style="width: 100%;">
-            <form>
-                <fieldset>
-                    <legend>
-                        <h1> ASCII-ART</h1>
-                    </legend>
-                    <textarea name="message" id="message" rows="10"
-                        cols="120">{{if .Result}}{{.Result}}{{end}}</textarea>
-                </fieldset>
-            </form>
-        </div>
+        {{end}}
     </div>
 </body>
 
